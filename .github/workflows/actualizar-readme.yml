@@ -1,0 +1,38 @@
+name: Actualizar README
+
+# Cada vez que se publica, edita o borra una versión, el README muestra la última.
+on:
+  release:
+    types: [published, released, edited, unpublished, deleted]
+  push:
+    branches: [main]
+    paths: ['.github/**']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: readme
+
+jobs:
+  readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+      - name: Escribir la versión actual
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 .github/actualizar_readme.py
+      - name: Guardar si cambió
+        run: |
+          if git diff --quiet -- README.md; then
+            echo "El README ya estaba al día."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Actualiza la versión en el README" -- README.md
+          git push
