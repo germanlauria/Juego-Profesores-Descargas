@@ -34,7 +34,31 @@
 <!-- VERSION:INICIO -->
 ## Versión actual
 
-Todavía no hay instaladores publicados. Cuando salga la primera versión, los enlaces van a aparecer acá.
+**0.2.0**, publicada el 24 de noviembre de 2026.
+
+[![Descargar para Windows](https://img.shields.io/badge/Descargar_para-Windows-0078D4?style=for-the-badge&labelColor=172036)](https://github.com/germanlauria/Juego-Profesores-Descargas/releases/download/v0.2.0/Juego-de-Profesores-0.2.0.exe)
+[![Descargar para Android](https://img.shields.io/badge/Descargar_para-Android-34A853?style=for-the-badge&labelColor=172036)](https://github.com/germanlauria/Juego-Profesores-Descargas/releases/download/v0.2.0/Juego-de-Profesores-0.2.0.apk)
+
+| Sistema | Descarga | Tamaño |
+| --- | --- | --- |
+| Windows | [Juego-de-Profesores-0.2.0.exe](https://github.com/germanlauria/Juego-Profesores-Descargas/releases/download/v0.2.0/Juego-de-Profesores-0.2.0.exe) | 2,0 MB |
+| Android | [Juego-de-Profesores-0.2.0.apk](https://github.com/germanlauria/Juego-Profesores-Descargas/releases/download/v0.2.0/Juego-de-Profesores-0.2.0.apk) | 3,2 MB |
+
+### Novedades
+
+**Agregado**
+
+- App de Windows (`.exe`) y de Android (`.apk`), además de la versión web.
+- El juego funciona sin servidor: explica, pregunta, responde, toma evaluaciones y guarda apuntes propios en el dispositivo.
+- Servidor opcional configurable en las apps, para sumar IA, voz y examen por foto.
+- Actualización desde el juego, sin desinstalar y sin perder el progreso.
+- Compilación, firma y publicación automática de los instaladores al crear una etiqueta de versión.
+- En Android, dictado del sistema y botón "atrás"; "Salir" ahora cierra la app.
+
+**Cambiado**
+
+- Si se corta la conexión en medio de una clase, el juego sigue con lo que trae adentro.
+- La versión web también se puede usar completa sin conexión, salvo la IA y la voz.
 <!-- VERSION:FIN -->
 
 ## Qué es
