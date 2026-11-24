@@ -5,7 +5,7 @@
 **Practicá cara a cara con tus profesores antes del parcial.**
 
 [![Versión](https://img.shields.io/github/v/release/germanlauria/Juego-Profesores-Descargas?style=for-the-badge&label=versi%C3%B3n&color=f6c945&labelColor=172036)](https://github.com/germanlauria/Juego-Profesores-Descargas/releases/latest)
-[![Publicada](https://img.shields.io/github/release-date/germanlauria/Juego-Profesores-Descargas?style=for-the-badge&label=publicada&color=1f7a52&labelColor=172036)](https://github.com/germanlauria/Juego-Profesores-Descargas/releases)
+[![Publicada](https://img.shields.io/badge/publicada-23%20de%20noviembre%20de%202026-1f7a52?style=for-the-badge&labelColor=172036)](https://github.com/germanlauria/Juego-Profesores-Descargas/releases)
 [![Descargas](https://img.shields.io/github/downloads/germanlauria/Juego-Profesores-Descargas/total?style=for-the-badge&label=descargas&color=3f8fd2&labelColor=172036)](https://github.com/germanlauria/Juego-Profesores-Descargas/releases)
 
 ![Estado](https://img.shields.io/badge/estado-en%20desarrollo-e8674f?style=flat-square)
@@ -34,7 +34,7 @@
 <!-- VERSION:INICIO -->
 ## Versión actual
 
-**0.2.0**, publicada el 24 de noviembre de 2026.
+**0.2.0**, publicada el 23 de noviembre de 2026.
 
 [![Descargar para Windows](https://img.shields.io/badge/Descargar_para-Windows-0078D4?style=for-the-badge&labelColor=172036)](https://github.com/germanlauria/Juego-Profesores-Descargas/releases/download/v0.2.0/Juego-de-Profesores-0.2.0.exe)
 [![Descargar para Android](https://img.shields.io/badge/Descargar_para-Android-34A853?style=for-the-badge&labelColor=172036)](https://github.com/germanlauria/Juego-Profesores-Descargas/releases/download/v0.2.0/Juego-de-Profesores-0.2.0.apk)

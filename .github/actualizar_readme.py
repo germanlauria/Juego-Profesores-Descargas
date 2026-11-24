@@ -8,8 +8,9 @@ import json
 import re
 import subprocess
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
+from urllib.parse import quote
 
 README = Path(__file__).resolve().parent.parent / "README.md"
 INICIO, FIN = "<!-- VERSION:INICIO -->", "<!-- VERSION:FIN -->"
@@ -35,7 +36,8 @@ def leer_versiones() -> list[dict]:
 
 
 def fecha(iso: str) -> str:
-    d = datetime.fromisoformat(iso.replace("Z", "+00:00"))
+    # Hora de Argentina: publicar a la noche no tiene que figurar como el día siguiente.
+    d = datetime.fromisoformat(iso.replace("Z", "+00:00")).astimezone(timezone(timedelta(hours=-3)))
     return f"{d.day} de {MESES[d.month - 1]} de {d.year}"
 
 
@@ -52,11 +54,21 @@ def tamano(octetos: int) -> str:
     return f"{octetos / 1024 / 1024:.1f} MB".replace(".", ",")
 
 
-def seccion(versiones: list[dict]) -> str:
+def ordenadas(versiones: list[dict]) -> list[dict]:
     publicadas = [v for v in versiones if not v["draft"] and not v["prerelease"]]
+    return sorted(publicadas, key=clave, reverse=True)
+
+
+def insignia_fecha(texto: str, versiones: list[dict]) -> str:
+    publicadas = ordenadas(versiones)
+    dia = fecha(publicadas[0]["published_at"]) if publicadas else "pronto"
+    return re.sub(r"(img\.shields\.io/badge/publicada-)[^?]*(-[0-9a-f]{6}\?)", lambda m: m[1] + quote(dia) + m[2], texto)
+
+
+def seccion(versiones: list[dict]) -> str:
+    publicadas = ordenadas(versiones)
     if not publicadas:
         return SIN_VERSIONES
-    publicadas.sort(key=clave, reverse=True)
     actual = publicadas[0]
     partes = [
         "## Versión actual",
@@ -101,10 +113,12 @@ def main() -> None:
     texto = README.read_text(encoding="utf-8")
     if texto.count(INICIO) != 1 or texto.count(FIN) != 1:
         sys.exit("El README tiene que tener una sola vez cada marca VERSION:INICIO y VERSION:FIN.")
+    versiones = leer_versiones()
+    texto = insignia_fecha(texto, versiones)
     antes, resto = texto.split(INICIO)
     despues = resto.split(FIN)[1]
     README.write_text(
-        f"{antes}{INICIO}\n{seccion(leer_versiones())}\n{FIN}{despues}", encoding="utf-8", newline="\n"
+        f"{antes}{INICIO}\n{seccion(versiones)}\n{FIN}{despues}", encoding="utf-8", newline="\n"
     )
 
 
