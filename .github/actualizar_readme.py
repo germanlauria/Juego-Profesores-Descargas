@@ -16,10 +16,10 @@ INICIO, FIN = "<!-- VERSION:INICIO -->", "<!-- VERSION:FIN -->"
 MESES = (
     "enero febrero marzo abril mayo junio julio agosto septiembre octubre noviembre diciembre"
 ).split()
-SISTEMAS = [(".exe", "Windows"), (".apk", "Android")]
+SISTEMAS = [(".exe", "Windows", "0078D4"), (".apk", "Android", "34A853")]
 SIN_VERSIONES = (
     "## Versión actual\n\n"
-    "**0.1.0 (en desarrollo).** Todavía no hay instaladores publicados. "
+    "Todavía no hay instaladores publicados. "
     "Cuando salga la primera versión, los enlaces van a aparecer acá."
 )
 
@@ -65,11 +65,20 @@ def seccion(versiones: list[dict]) -> str:
 
     filas = [
         f"| {sistema} | [{a['name']}]({a['browser_download_url']}) | {tamano(a['size'])} |"
-        for extension, sistema in SISTEMAS
+        for extension, sistema, _ in SISTEMAS
+        for a in actual["assets"]
+        if a["name"].lower().endswith(extension)
+    ]
+    botones = [
+        f"[![Descargar para {sistema}]"
+        f"(https://img.shields.io/badge/Descargar_para-{sistema}-{color}?style=for-the-badge&labelColor=172036)]"
+        f"({a['browser_download_url']})"
+        for extension, sistema, color in SISTEMAS
         for a in actual["assets"]
         if a["name"].lower().endswith(extension)
     ]
     if filas:
+        partes.append("\n".join(botones))
         partes.append("\n".join(["| Sistema | Descarga | Tamaño |", "| --- | --- | --- |", *filas]))
 
     # Las notas no pueden romper las marcas ni los títulos del README.
